@@ -5,6 +5,7 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import { useLocation } from "react-router-dom";
+import SearchedItem from "../../components/searchedItem/SearchedItem";
 
 function List() {
   const location = useLocation();
@@ -26,7 +27,7 @@ function List() {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Destination</label>
-              <input type="text" placeholder="New Delhi" />
+              <input type="text" placeholder={destination} />
             </div>
 
             <div className="lsItem">
@@ -63,24 +64,48 @@ function List() {
 
                 <div className="lsOptionItem">
                   <span className="lsoptionText">Adult</span>
-                  <input type="number" className="lsOptionInput" />
+                  <input
+                    type="number"
+                    className="lsOptionInput"
+                    min={1}
+                    placeholder={options.adult}
+                  />
                 </div>
 
                 <div className="lsOptionItem">
                   <span className="lsoptionText">Children</span>
-                  <input type="number" className="lsOptionInput" />
+                  <input
+                    type="number"
+                    className="lsOptionInput"
+                    min={0}
+                    placeholder={options.children}
+                  />
                 </div>
 
                 <div className="lsOptionItem">
                   <span className="lsoptionText">Room</span>
-                  <input type="number" className="lsOptionInput" />
+                  <input
+                    type="number"
+                    className="lsOptionInput"
+                    min={1}
+                    placeholder={options.room}
+                  />
                 </div>
               </div>
             </div>
 
             <button>Search</button>
           </div>
-          <div className="listResult"></div>
+          <div className="listResult">
+            <SearchedItem />
+            <SearchedItem />
+            <SearchedItem />
+            <SearchedItem />
+            <SearchedItem />
+            <SearchedItem />
+            <SearchedItem />
+            <SearchedItem />
+          </div>
         </div>
       </div>
     </div>
