@@ -4,15 +4,19 @@ import MailList from "../../components/mailList/MailList";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocation } from "@fortawesome/free-solid-svg-icons";
+import { faCircleArrowLeft, faCircleArrowRight, faLocation, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 
 const Hotel = () => {
+  const [slideNumber, setSlideNumber] = useState(0);
+  const [open, setOpen] = useState(false);
   const photos = [
     {
       src: "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870",
     },
     {
-      src: "https://images.unsplash.com/photo-1573052905904-34ad8c27f0cc?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435",
+      src: "https://images.unsplash.com/photo-1560662105-57f8ad6ae2d1?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870",
     },
     {
       src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774",
@@ -28,21 +32,55 @@ const Hotel = () => {
     },
   ];
 
-  // const handleOpen = (i) => {
-  //   setSlideNumber(i);
-  //   setOpen(true);
-  // }
+  const handleOpen = (i) => {
+    setSlideNumber(i);
+    setOpen(true);
+  };
+
+  const handleMove = (direction) => {
+    let newSlideNumber;
+
+    if (direction === "l") {
+      newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1;
+    } else {
+      newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
+    }
+
+    setSlideNumber(newSlideNumber);
+  };
 
   return (
     <div>
       <Navbar />
       <Header type="list" />
       <div className="hotelContainer">
+        {open && (
+          <div className="slider">
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="close"
+              onClick={() => setOpen(false)}
+            />
+            <FontAwesomeIcon
+              icon={faCircleArrowLeft}
+              className="arrow"
+              onClick={() => handleMove("l")}
+            />
+            <div className="sliderWrapper">
+              <img src={photos[slideNumber].src} alt="" className="sliderImg" />
+            </div>
+            <FontAwesomeIcon
+              icon={faCircleArrowRight}
+              className="arrow"
+              onClick={() => handleMove("r")}
+            />
+          </div>
+        )}
         <div className="hotelWrapper">
-        <button className="bookNow">Reserve or Book Now!</button>
+          <button className="bookNow">Reserve or Book Now!</button>
           <h1 className="hotelTitle">Loveruk Stays</h1>
           <div className="hotelAddress">
-            <FontAwesomeIcon icon={faLocation} />
+            <FontAwesomeIcon icon={faLocationDot} />
             <span> 5 BazaarStreet, Tower Nanak, Chiang Mai, Thailand</span>
           </div>
 
@@ -56,7 +94,12 @@ const Hotel = () => {
           <div className="hotelImages">
             {photos.map((photo, i) => (
               <div className="hotelImgWrapper" key={i}>
-                <img src={photo.src} alt="" className="hotelImg" />
+                <img
+                  onClick={() => handleOpen(i)}
+                  src={photo.src}
+                  alt=""
+                  className="hotelImg"
+                />
               </div>
             ))}
           </div>
@@ -65,9 +108,9 @@ const Hotel = () => {
             <div className="hotelDetailsTexts">
               <h1 className="hotelTitle">Stay in the heart of Chiang Mai</h1>
               <p className="hotelDesc">
-                Located a 5-minute walk from St. Florian's Gate in Chiang Mai, Tower
-                Street Apartments has accommodations with air conditioning and
-                free WiFi. The units come with hardwood floors and feature a
+                Located a 5-minute walk from St. Florian's Gate in Chiang Mai,
+                Tower Street Apartments has accommodations with air conditioning
+                and free WiFi. The units come with hardwood floors and feature a
                 fully equipped kitchenette with a microwave, a flat-screen TV,
                 and a private bathroom with shower and a hairdryer. A fridge is
                 also offered, as well as an electric tea pot and a coffee
@@ -79,20 +122,23 @@ const Hotel = () => {
               </p>
             </div>
 
-              <div className="hotelDetailPrice">
-                <h1>Perfect for 9-night stay!</h1>
-                <span> Located in the real heart of Chaing Mai, this property has an
-                excellent location score of 9.8!</span>
-                <h2>
-                  <b>$945</b> ( 9 Nights)
-                </h2>
-                <button>Book Now!</button>
-              </div>
+            <div className="hotelDetailPrice">
+              <h1>Perfect for 9-night stay!</h1>
+              <span>
+                {" "}
+                Located in the real heart of Chaing Mai, this property has an
+                excellent location score of 9.8!
+              </span>
+              <h2>
+                <b>$945</b> ( 9 Nights)
+              </h2>
+              <button>Book Now!</button>
+            </div>
           </div>
         </div>
+        <MailList />
+        <Footer />
       </div>
-      <MailList />
-      <Footer />
     </div>
   );
 };
