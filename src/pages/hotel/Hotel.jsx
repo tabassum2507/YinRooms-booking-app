@@ -34,18 +34,22 @@ const Hotel = () => {
   // }
 
   return (
-    <div className="hotel">
+    <div>
       <Navbar />
       <Header type="list" />
       <div className="hotelContainer">
         <div className="hotelWrapper">
+        <button className="bookNow">Reserve or Book Now!</button>
           <h1 className="hotelTitle">Loveruk Stays</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocation} />
-            <span> 5 BazaarStreet, Tower Nanak, Mumbai, India</span>
+            <span> 5 BazaarStreet, Tower Nanak, Chiang Mai, Thailand</span>
           </div>
 
           <span className="hotelDistance">
+            Excellent location – 500m from center
+          </span>
+          <span className="hotelPriceHighlight">
             Book a stay over $114 at this property and get a free airport taxi
           </span>
 
@@ -59,9 +63,9 @@ const Hotel = () => {
 
           <div className="hotelDetails">
             <div className="hotelDetailsTexts">
-              <h1 className="hotelTitle">Stay in the heart of Chaing Mai</h1>
+              <h1 className="hotelTitle">Stay in the heart of Chiang Mai</h1>
               <p className="hotelDesc">
-                Located a 5-minute walk from St. Florian's Gate in Chaing Mai, Tower
+                Located a 5-minute walk from St. Florian's Gate in Chiang Mai, Tower
                 Street Apartments has accommodations with air conditioning and
                 free WiFi. The units come with hardwood floors and feature a
                 fully equipped kitchenette with a microwave, a flat-screen TV,
@@ -69,7 +73,7 @@ const Hotel = () => {
                 also offered, as well as an electric tea pot and a coffee
                 machine. Popular points of interest near the apartment include
                 Cloth Hall, Main Market Square and Town Hall Tower. The nearest
-                airport is John Paul II International Chaing Mai–Balice, 16.1 km
+                airport is John Paul II International Chiang Mai–Balice, 16.1 km
                 from Tower Street Apartments, and the property offers a paid
                 airport shuttle service.
               </p>
