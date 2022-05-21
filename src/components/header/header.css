@@ -1,5 +1,5 @@
 .header {
-  background-color: #003580;
+  background-color: #FF5D5D;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -39,11 +39,11 @@
 }
 
 .headerBtn {
-  background-color: #0071c2;
+  background-color: #FFC3C3;
   padding: 8px;
   border: none;
   border-radius: 8px;
-  color: #fff;
+  color: rgb(43, 38, 38);
   font-weight: 500;
   box-shadow: 0 4px 8px hsla(228, 66%, 45%, 0.25);
 }
