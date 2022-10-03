@@ -1,2 +1,2 @@
 # YinRooms-booking-app
-MERN Hotel Booking App
+MERN Hotel, Taxi, Flight Booking App
